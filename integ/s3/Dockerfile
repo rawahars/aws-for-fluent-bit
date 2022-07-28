@@ -1,12 +1,7 @@
-# Start from the latest golang base image
-FROM public.ecr.aws/amazonlinux/amazonlinux:latest
-RUN curl -sL -o /bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
-RUN chmod +x /bin/gimme
-RUN yum upgrade -y && yum install -y tar gzip git
-ENV HOME /home
-RUN /bin/gimme 1.17.9
-ENV PATH ${PATH}:/home/.gimme/versions/go1.17.9.linux.arm64/bin:/home/.gimme/versions/go1.17.9.linux.amd64/bin
+FROM public.ecr.aws/docker/library/golang:1.17.9 AS base
+
 RUN go version
+
 ENV GOPROXY=direct
 
 # Set the Current Working Directory inside the container
@@ -22,4 +17,5 @@ RUN go mod download
 RUN go build -o s3ValidateAndClean .
 
 # Command to run the executable
+# Override this for Windows from docker-compose YML
 CMD ["./s3ValidateAndClean"]

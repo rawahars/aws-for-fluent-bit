@@ -1,0 +1,17 @@
+services:
+  fluent-bit:
+    container_name: ${AWS_FOR_FLUENT_BIT_CONTAINER_NAME}
+    image: 173460346027.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:2.26.1-ltsc2019
+    environment:
+      - "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+      - "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+      - "AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"
+      - FLB_LOG_LEVEL=debug
+      - "LOG_GROUP_NAME=${LOG_GROUP_NAME}"
+      - "CW_PLUGIN_UNDER_TEST=${CW_PLUGIN_UNDER_TEST}"
+    volumes:
+      - ${PROJECT_ROOT}/integ/test_cloudwatch/windows-config:C:/fluent-bit/etc/
+networks:
+  default:
+    name: nat
+    external: true

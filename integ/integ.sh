@@ -5,6 +5,7 @@ export PROJECT_ROOT="$(pwd)"
 test_cloudwatch() {
 	export ARCHITECTURE=$(uname -m)
 	export LOG_GROUP_NAME="fluent-bit-integ-test-${ARCHITECTURE}"
+	export VOLUME_MOUNT_CONTAINER="/out"
 	# Tag is used to name the log stream; each test run has a unique (random) log stream name
 	export TAG=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 10)
 	docker-compose --file ./integ/test_cloudwatch/docker-compose.test.yml build
