@@ -23,3 +23,7 @@ https://github.com/PettitWesley/fluent-bit.git s3-log-key-warn-1_9 308b73558fb2d
 
 # ECS Filter
 https://github.com/PettitWesley/fluent-bit.git ecs-empty-metadata-fix-one-commit 24934c938e8f63700edf1230a09e4483ac5df6a3
+
+# Segfault
+https://github.com/matthewfala/fluent-bit.git segfault 80d6006cf2f72a695ae49506c9f350c466910d3e
+https://github.com/matthewfala/fluent-bit.git segfault f8a01822eb2530cd318d6ee3fe3e427a4c191442
