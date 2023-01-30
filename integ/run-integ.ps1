@@ -131,6 +131,7 @@ Function Test-Command {
 
     if ($LASTEXITCODE)
     {
+        Start-Sleep -Seconds 6000
         throw ("Integration tests failed for Windows during {0}: Message: {1}" -f $TestMethod, $_.Exception.Message)
     }
 }
